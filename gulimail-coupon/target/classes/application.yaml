@@ -1,0 +1,20 @@
+server:
+  port: 8889
+
+spring:
+  application:
+    name: gulimail-coupon
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.229.3:3306/gulimail_sms
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
