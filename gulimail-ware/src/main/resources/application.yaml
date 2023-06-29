@@ -1,14 +1,21 @@
+server:
+  port: 8892
+
 spring:
+  application:
+    name: gulimail-ware
   datasource:
     username: root
     password: root
     url: jdbc:mysql://192.168.229.3:3306/gulimail_wms
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      server-addr: localhost:8848
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
-server:
-  port: 8892
+

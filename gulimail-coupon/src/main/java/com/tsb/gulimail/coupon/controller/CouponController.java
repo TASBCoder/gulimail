@@ -18,7 +18,7 @@ import com.tsb.common.utils.R;
 
 
 /**
- * 
+ *
  *
  * @author SongBo
  * @email 616907739@gmail.com
@@ -29,6 +29,13 @@ import com.tsb.common.utils.R;
 public class CouponController {
     @Autowired
     private CouponService couponService;
+
+    @RequestMapping("/member/list")
+    public R memberList(){
+        CouponEntity couponEntity = new CouponEntity();
+        couponEntity.setCouponName("满100减50");
+        return R.ok().put("coupon", Arrays.asList(couponEntity));
+    }
 
     /**
      * 列表

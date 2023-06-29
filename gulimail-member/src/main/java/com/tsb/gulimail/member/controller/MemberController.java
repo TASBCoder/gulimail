@@ -3,7 +3,10 @@ package com.tsb.gulimail.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.tsb.gulimail.member.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +21,7 @@ import com.tsb.common.utils.R;
 
 
 /**
- * 
+ *
  *
  * @author SongBo
  * @email 616907739@gmail.com
@@ -26,9 +29,29 @@ import com.tsb.common.utils.R;
  */
 @RestController
 @RequestMapping("member/member")
+@RefreshScope
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private CouponFeignService couponFeignService;
+
+    @Value("${member.name}")
+    private String name;
+
+    @Value("${member.age}")
+    private Integer age;
+
+    @RequestMapping("/member/testFeign")
+    public R memberCoupon() {
+        return couponFeignService.memberList();
+    }
+
+    @RequestMapping("/member/testConfig")
+    public R memberTestConfig() {
+        return R.ok().put("name", name).put("age", age);
+    }
 
     /**
      * 列表
